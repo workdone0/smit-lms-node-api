@@ -1,9 +1,27 @@
 const express = require("express");
 const app = express();
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const studentRoutes = require("./api/routes/student");
 const teacherRoutes = require("./api/routes/teacher");
 const leaveRoutes = require("./api/routes/leave");
+
+mongoose.connect(
+  "mongodb+srv://workdone0:" +
+    process.env.MONGO_ATLAS_PW +
+    "@cluster0.8lw4e.mongodb.net/lms?retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
+);
+
+//Use for logging to the console
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 //CORS error fix by setting a header
 app.use((req, res, next) => {
