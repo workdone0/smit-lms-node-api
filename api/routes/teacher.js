@@ -53,6 +53,23 @@ router.get("/profile/:teacherId", (req, res, next) => {
   });
 });
 
+router.get("/list", (req, res, next) => {
+  Teacher.find()
+    .exec()
+    .then((result) => {
+      res.status(200).json({
+        quantity: result.length,
+        data: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        message: "Something went wrong",
+        error: err,
+      });
+    });
+});
+
 router.post("/register", (req, res, next) => {
   Teacher.find({
     phone: req.body.phone,
