@@ -55,6 +55,7 @@ router.get("/profile/:teacherId", (req, res, next) => {
 
 router.get("/list", (req, res, next) => {
   Teacher.find()
+    .select("_id name")
     .exec()
     .then((result) => {
       res.status(200).json({
