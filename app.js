@@ -12,7 +12,9 @@ const teacherRoutes = require("./api/routes/teacher");
 const leaveRoutes = require("./api/routes/leave");
 
 mongoose.connect(
-  "mongodb+srv://workdone0:workdone0@cluster0.8lw4e.mongodb.net/lms?retryWrites=true&w=majority",
+  "mongodb+srv://workdone0:" +
+    process.env.MONGO_ATLAS_PW +
+    "@cluster0.8lw4e.mongodb.net/lms?retryWrites=true&w=majority",
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true }
 );
 
