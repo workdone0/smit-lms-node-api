@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 
 router.post("/student", (req, res, next) => {
   const decoded = jwt.verify(req.body.token, process.env.JWT_KEY);
-  console.log(decoded);
   Student.find({ _id: decoded.userId, email: decoded.email })
     .exec()
     .then((user) => {
