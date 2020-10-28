@@ -10,6 +10,7 @@ dotenv.config();
 const studentRoutes = require("./api/routes/student");
 const teacherRoutes = require("./api/routes/teacher");
 const leaveRoutes = require("./api/routes/leave");
+const verifyRoutes = require("./api/routes/verify");
 
 mongoose.connect(
   "mongodb+srv://workdone0:" +
@@ -38,6 +39,7 @@ app.use((req, res, next) => {
 app.use("/student", studentRoutes);
 app.use("/teacher", teacherRoutes);
 app.use("/leave", leaveRoutes);
+app.use("/verify", verifyRoutes);
 
 //Throwing an error if no route is found, always will stay at the end of all routes
 app.use((req, res, next) => {
