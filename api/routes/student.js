@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 
 router.post("/login", (req, res, next) => {
   Student.find({ email: req.body.email })
-    .select(" _id email")
     .exec()
     .then((user) => {
       if (user.length === 0) {
@@ -33,7 +32,7 @@ router.post("/login", (req, res, next) => {
           return res.status(200).json({
             message: "Auth Successful",
             token: token,
-            user: user[0],
+            user: { _id: user[0]._id, email: user[0].email },
           });
         }
         return res.status(401).json({
