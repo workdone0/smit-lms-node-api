@@ -13,7 +13,7 @@ router.post("/student", (req, res, next) => {
         res.status(200).json({
           message: "User found",
           value: true,
-          user: user,
+          user: user[0],
         });
       } else {
         res.status(401).json({
