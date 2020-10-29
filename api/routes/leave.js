@@ -40,8 +40,8 @@ router.get("/:leaveId", (req, res, next) => {
   });
 });
 
-router.get("/student/:studentId", (req, res, next) => {
-  Leave.find({ student: req.params.studentId })
+router.post("/student", (req, res, next) => {
+  Leave.find({ student: req.body.studentId })
     .exec()
     .then((result) => {
       res.status(200).json({
@@ -56,8 +56,8 @@ router.get("/student/:studentId", (req, res, next) => {
     });
 });
 
-router.get("/teacher/:teacherId", (req, res, next) => {
-  Leave.find({ floor_warden: req.params.teacherId })
+router.post("/teacher", (req, res, next) => {
+  Leave.find({ floor_warden: req.body.teacherId })
     .exec()
     .then((result) => {
       res.status(200).json({
